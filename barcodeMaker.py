@@ -1,7 +1,7 @@
 from barcode import Code128
 from barcode.writer import ImageWriter
 import openpyxl
-from time import sleep
+import fitz
 
 wb = openpyxl.Workbook()
 ws = wb.worksheets[0]
@@ -19,12 +19,18 @@ def convertToBarcode():
 
 convertToBarcode()
 
-for index, string in enumerate(stringList):
-    ws[f'A{index + 1}'] = string
-    image = openpyxl.drawing.image.Image(f"C:\\Users\\VD102541\\Desktop\\Barcodes\\{string}.png")
-    image.anchor = f'E{index}'
-    ws.add_image(image)
 
-wb.save(f"C:\\Users\\VD102541\\Desktop\\Barcodes\\myCustomBarcodes.xlsx")
+# adds images to an excel file. This doesn't work well so I'm commenting it out for now.
+
+# for index, string in enumerate(stringList):
+#     ws[f'A{index + 1}'] = string
+#     image = openpyxl.drawing.image.Image(f"C:\\Users\\VD102541\\Desktop\\Barcodes\\{string}.png")
+#     image.anchor = f'E{index}'
+#     ws.add_image(image)
+
+# wb.save(f"C:\\Users\\VD102541\\Desktop\\Barcodes\\myCustomBarcodes.xlsx")
+
+
+
 
 
