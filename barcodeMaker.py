@@ -1,6 +1,7 @@
 from barcode import Code128
 from barcode.writer import ImageWriter
 import openpyxl
+from time import sleep
 
 wb = openpyxl.Workbook()
 ws = wb.worksheets[0]
@@ -18,19 +19,12 @@ def convertToBarcode():
 
 convertToBarcode()
 
-# ws['A1'] = stringOne
-# imageOne = openpyxl.drawing.image.Image(r"C:\Users\VD102541\Desktop\PDX_Archive_Barcode.png")
-# imageOne.anchor = 'E1'
-# ws.add_image(imageOne)
+for index, string in enumerate(stringList):
+    ws[f'A{index + 1}'] = string
+    image = openpyxl.drawing.image.Image(f"C:\\Users\\VD102541\\Desktop\\Barcodes\\{string}.png")
+    image.anchor = f'E{index}'
+    ws.add_image(image)
 
-# ws['A20'] = stringTwo
-# imageTwo = openpyxl.drawing.image.Image(r'C:\Users\VD102541\Desktop\PDX_DeArchive_Barcode.png')
-# imageTwo.anchor = 'E20'
-# ws.add_image(imageTwo)
+wb.save(f"C:\\Users\\VD102541\\Desktop\\Barcodes\\myCustomBarcodes.xlsx")
 
-# ws['A40'] = stringThree
-# imageThree = openpyxl.drawing.image.Image(r"C:\Users\VD102541\Desktop\PDX_ArchiveRecycle_Barcode.png")
-# imageThree.anchor = 'E40'
-# ws.add_image(imageThree)
 
-# wb.save(r"C:\Users\VD102541\Desktop\barcodes.xlsx")
